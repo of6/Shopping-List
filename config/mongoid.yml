@@ -10,4 +10,4 @@ test:
 # set these environment variables on your prod server
 production:
   host: localhost
-  database: shoppinglist
+  database: heroku_mpkvbglk
