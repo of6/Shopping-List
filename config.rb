@@ -1,0 +1,15 @@
+require 'bootstrap-sass'
+
+# Set this to the root of your project when deployed:
+http_path = "/"
+css_dir = "public/css"
+sass_dir = "public/scss"
+images_dir = "public/img"
+fonts_dir = "public/fonts"
+javascripts_dir = "public/js"
+
+# To enable relative paths to assets via compass helper functions. Uncomment:
+relative_assets = true
+
+# One of :expanded or :nested or :compact or :compressed
+output_style = :compressed

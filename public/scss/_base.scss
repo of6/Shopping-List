@@ -1,0 +1,89 @@
+// Set any custom variables we need for our site:
+
+.header {
+  background-color: #9DE0AD;
+  padding: 16px;
+  
+  .nav-pills {
+    margin: 16px auto;
+    
+    li {
+      margin-left: 0; 
+    }
+    
+    a {
+      color: $text-color;
+      
+      &:hover {
+        background-color: rgba($text-color, 0.2);
+      }
+    }
+  }
+  
+  .app-title {
+    color: #594F4F;
+    margin: 16px auto;
+    line-height: 1;;
+  }
+}
+
+.item-input {
+  padding: 48px 16px;
+}
+
+.purchased-view {
+  padding: 16px;
+  
+  .title {
+    margin: 16px 0 32px;
+  }
+}
+
+.shopping-list-wrap {
+  padding: 0 16px;
+}
+
+.shoppinglist {
+  td {
+    vertical-align: middle;
+  }
+  
+  .item-purchased {
+    width: 5%;
+  }
+
+  .item-name {
+    width: 60%;
+    
+    p {
+      margin: 6px 0;
+    }
+  }
+
+  .item-category {
+    width: 30%;
+  }
+
+  .item-delete {
+    width: 5%;
+  }
+}
+
+.modal-content {
+  border-radius: 0;
+  
+  .modal-header {
+    background-color: #9DE0AD;
+  }
+  
+  .modal-body {
+    .categories {
+      margin: 16px 0 0;
+      
+      li {
+        border-top: 1px solid #eee;
+        padding: 8px 16px;
+      }
+    }
+  }
+}

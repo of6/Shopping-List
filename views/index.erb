@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Shopping List</title>
+  <meta name="description" content="Shopping list app built with Backbone.js">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
+
+  <script src="js/vendor/jquery-1.11.3.min.js"></script>
+  <script src="js/vendor/underscore.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/backbone.min.js"></script>
+
+  <script src="js/AppRouter.js"></script>
+
+  <!-- models: -->
+  <script src="js/Category.js"></script>
+  <script src="js/ShopItem.js"></script>
+
+  <!-- views: -->
+  <script src="js/CategoryView.js"></script>
+  <script src="js/ShopItemView.js"></script>
+  <script src="js/ShoppingView.js"></script>
+  <script src="js/PurchasedView.js"></script>
+
+  <!-- templates: -->
+  <script type="text/template" id="purchasedView">
+    <div class="purchased-view center-block">
+      <h3 class="title">Purchased Items</h3>
+      <table class="table table-hover">
+        <tbody class="shoppinglist"></tbody>
+      </table>
+    </div>
+  </script>
+
+  <script type="text/template" id="shoppingView">
+    <div class="item-input center-block">
+      <div class="input-group">
+        <input type="text" class="form-control input-lg listbox" placeholder="Item"/>
+        <span class="input-group-btn">
+          <button class="btn btn-primary btn-lg btn-block js-addtolist">Add To List</button>
+        </span>
+      </div>
+    </div>
+    <div class="shopping-list-wrap center-block">
+      <table class="table table-hover">
+        <tbody class="shoppinglist"></tbody>
+      </table>
+    </div>
+  </script>
+
+  <script type="text/template" id="categoryView">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Manage Categories</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-inline form-group">
+              <label>Add Category</label>
+              <input type="text" class="form-control category_name" />
+              <button class="btn btn-default category_add">Add</button>
+            </div>
+          <ul class="categories list-unstyled">
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template" id="shopitemView">
+    <td class="item-purchased">
+      <%% if (model.get('purchased') == false) { %>
+      <a href="#" class="purchase btn"><i class="glyphicon glyphicon-star-empty"></i></a>
+      <%% } %>
+    </td>
+    <td class="item-name">
+      <p><%%= model.get('name') %></p>
+    </td>
+    <td class="item-category">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-menu-<%%= model.get('name') %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <%%= (model.get('category') && model.get('category').get('name').length > 0) ? model.get('category').get('name') : 'no category'  %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdown-menu-<%%= model.get('name') %>">
+          <%% if (categories != undefined) { %>
+            <%% categories.each(function(c) { %>
+              <li><a href="#" data-id="<%%= c.get('_id') %>"><%%= c.get('name') %></a></li>
+            <%% }, this); %>
+          <%% } %>
+        </ul>
+      </div>
+    </td>
+    <td class="item-delete">
+        <a href="#" class="delete btn btn-danger btn-sm">x</a>
+    </td>
+  </script>
+
+</head>
+<body>
+
+
+  <div class="header clearfix">
+
+    <nav>
+      <ul class="nav nav-pills pull-right">
+      <li role="presentation" class="home active"><a class="active" href="#">List</a></li>
+        <li role="presentation" class="showpurchased"><a href="#purchased">Purchased</a></li>
+        <li role="presentation" class="divider-vertical"></li>
+        <li role="presentation" class="categories"><a href="#categories">Categories</a></li>
+      </ul>
+    </nav>
+
+    <h1 class="app-title text-muted">Shopping List</h1>
+
+  </div>
+
+  <div class="container-fluid">
+
+    <section id="app" class="row"></section>
+
+    <div id="categorymodal" class="modal fade"></div>
+
+  </div>
+
+  <script>
+    $(function() {
+      router = new AppRouter();
+      Backbone.history.start();
+    });
+  </script>
+
+</body>
+</html>
